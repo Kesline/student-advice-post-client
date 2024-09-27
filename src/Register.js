@@ -11,7 +11,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5002/api/register', { email, password });
+      const response = await axios.post('https://student-advice-post-server.onrender.com/api/register', { email, password });
       setMessage(response.data.message);
       setEmail('');
       setPassword('');

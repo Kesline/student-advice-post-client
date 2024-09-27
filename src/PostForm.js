@@ -8,7 +8,7 @@ const PostForm = ({ onPostCreated }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5001/api/posts', { title, content }, {
+      const response = await axios.post('https://student-advice-post-server.onrender.com/api/posts', { title, content }, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}` // Include the token in the request
         }

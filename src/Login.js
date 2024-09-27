@@ -10,7 +10,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5001/api/login', { email, password });
+      const response = await axios.post('https://student-advice-post-server.onrender.com/api/login', { email, password });
       const { token } = response.data;
       localStorage.setItem('token', token); // Store the token in local storage
       navigate('/'); // Redirect to the home page or any protected route

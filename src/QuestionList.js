@@ -8,7 +8,7 @@ const QuestionList = () => {
   // Fetch questions from the server
   const fetchQuestions = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/questions', {
+      const response = await axios.get('https://student-advice-post-server.onrender.com/api/questions', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}` // Include the token for protected routes
         }
@@ -22,7 +22,7 @@ const QuestionList = () => {
   // Handle deleting a question
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5001/api/questions/${id}`, {
+      await axios.delete(`https://student-advice-post-server.onrender.com/api/questions/${id}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}` // Include the token for protected routes
         }
@@ -37,7 +37,7 @@ const QuestionList = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5001/api/questions', { question: newQuestion }, {
+      const response = await axios.post('https://student-advice-post-server.onrender.com/api/questions', { question: newQuestion }, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}` // Include the token for protected routes
         }

@@ -19,7 +19,7 @@ const App = () => {
   // Fetch posts from the server
   const fetchPosts = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/posts');
+      const response = await axios.get('https://student-advice-post-server.onrender.com/api/posts');
       setPosts(response.data); // Update state with fetched posts
     } catch (error) {
       console.error('Error fetching posts:', error);
@@ -29,7 +29,7 @@ const App = () => {
   // Delete post handler
   const handleDeletePost = async (id) => {
     try {
-      await axios.delete(`http://localhost:5001/api/posts/${id}`, {
+      await axios.delete(`https://student-advice-post-server.onrender.com/api/posts/${id}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
