@@ -8,17 +8,33 @@ const PostForm = ({ onPostCreated }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://student-advice-post-server.onrender.com/api/posts', { title, content }, {
+      // Fetch the token from localStorage
+      const token = localStorage.getItem('token');
+      console.log(token, "here")
+      // Check if the token exists before making the request
+      if (!token) {
+        alert('You are not authenticated. Please log in first.');
+        return;
+      }
+
+      const response = await axios.post('https://student-advice-post-server.onrender.com/api/posts', 
+      { title, content }, 
+      {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}` // Include the token in the request
+          'authorization': `${token}`, // Add the Bearer token here
+          'Content-Type': 'application/json'
         }
       });
+
+      // Clear the form upon success
       setTitle('');
       setContent('');
       alert('Post created successfully!');
-      onPostCreated(response.data); // Notify the parent component (App.js) about the new post
+      onPostCreated(response.data); // Notify parent component
+
     } catch (error) {
-      console.error('Error creating post:', error);
+      console.error('Error creating post:', error.response ? error.response.data : error.message);
+      alert('Failed to create post: ' + (error.response ? error.response.data.message : error.message));
     }
   };
 

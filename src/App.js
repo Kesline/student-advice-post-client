@@ -31,7 +31,7 @@ const App = () => {
     try {
       await axios.delete(`https://student-advice-post-server.onrender.com/api/posts/${id}`, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'authorization': `${localStorage.getItem('token')}`
         }
       });
       setPosts(posts.filter(post => post._id !== id)); // Remove post from state
